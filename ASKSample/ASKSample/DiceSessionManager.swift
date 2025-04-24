@@ -54,25 +54,29 @@ class DiceSessionManager: NSObject {
 
     // MARK: - DiceSessionManager actions
 
-    func presentPicker() {
-        session.showPicker(for: [Self.pinkDice, Self.blueDice]) { error in
-            if let error {
-                print("Failed to show picker due to: \(error.localizedDescription)")
-            }
+    func presentPicker() async {
+        do {
+            try await session.showPicker(for: [Self.pinkDice, Self.blueDice])
+        } catch let error {
+            print("Failed to show picker due to: \(error.localizedDescription)")
         }
     }
 
-    func removeDice() {
+    func removeDice() async {
         guard let currentDice else { return }
 
         if peripheralConnected {
             disconnect()
         }
 
-        session.removeAccessory(currentDice) { _ in
+        do {
+            try await session.removeAccessory(currentDice)
             self.diceColor = nil
             self.currentDice = nil
             self.manager = nil
+        } catch let error {
+            print("Failed to remove accessory due to: \(error.localizedDescription)")
+            return
         }
     }
 

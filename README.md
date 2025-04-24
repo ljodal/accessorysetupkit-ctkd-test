@@ -1,4 +1,4 @@
-# Authorizing a Bluetooth accessory to share a dice roll
+# Setting up and authorizing a Bluetooth accessory
 
 Discover and set up a specific Bluetooth accessory without requesting permission to use Bluetooth.
 

@@ -43,7 +43,9 @@ struct ContentView: View {
             Spacer()
 
             Button {
-                diceSessionManager.presentPicker()
+                Task {
+                    await diceSessionManager.presentPicker()
+                }
             } label: {
                 Text("Add Dice")
                     .frame(maxWidth: .infinity)
@@ -89,7 +91,9 @@ struct ContentView: View {
             .padding(.bottom, 6)
 
             Button {
-                diceSessionManager.removeDice()
+                Task {
+                    await diceSessionManager.removeDice()
+                }
             } label: {
                 Text("Remove")
                     .foregroundStyle(.red)
