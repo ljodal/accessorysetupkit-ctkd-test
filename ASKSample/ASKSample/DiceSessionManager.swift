@@ -28,6 +28,7 @@ class DiceSessionManager: NSObject {
     private static let pinkDice: ASPickerDisplayItem = {
         let descriptor = ASDiscoveryDescriptor()
         descriptor.bluetoothServiceUUID = DiceColor.pink.serviceUUID
+        descriptor.supportedOptions = [.bluetoothTransportBridging, .bluetoothPairingLE]
 
         return ASPickerDisplayItem(
             name: DiceColor.pink.displayName,
@@ -39,6 +40,7 @@ class DiceSessionManager: NSObject {
     private static let blueDice: ASPickerDisplayItem = {
         let descriptor = ASDiscoveryDescriptor()
         descriptor.bluetoothServiceUUID = DiceColor.blue.serviceUUID
+        descriptor.supportedOptions = [.bluetoothTransportBridging, .bluetoothPairingLE]
 
         return ASPickerDisplayItem(
             name: DiceColor.blue.displayName,
@@ -128,6 +130,8 @@ class DiceSessionManager: NSObject {
             pickerDismissed = false
         case .pickerDidDismiss:
             pickerDismissed = true
+        case .pickerSetupBridging:
+            print("Transport bridging started: \(event)")
         default:
             print("Received event type \(event.eventType)")
         }
