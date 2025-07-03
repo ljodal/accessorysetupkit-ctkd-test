@@ -90,7 +90,7 @@ class DiceSessionManager: NSObject {
             return
         }
 
-        manager.connect(peripheral)
+        manager.connect(peripheral, options: [CBConnectPeripheralOptionEnableTransportBridgingKey: true])
     }
 
     func disconnect() {
